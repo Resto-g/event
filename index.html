@@ -68,6 +68,7 @@
     <script src="/__/firebase/5.5.4/firebase-database.js"></script>
     <script src="/__/firebase/5.5.4/firebase-functions.js"></script>
     <script src="/__/firebase/init.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
    
    
     <style>
@@ -139,6 +140,23 @@
         
         
     </style>
+    <script type="text/javascript">
+        function dataCallback(response) {
+            console.log("dataCallback", response)
+           fetch(`/checkRecaptcha?response=${encodeURIComponent(response)}`).
+            then(response => {
+                if (response.ok) {
+                    document.querySelector('#eventticket-contact-butn').disabled = false;
+                } else {
+                    document.querySelector('#eventticket-contact-butn').disabled = true;
+                }
+            })
+            .catch( e => console.log(e));
+        }
+        function dataExpiredCallback() {
+            console.log("dataExpiredCallback")
+        }
+    </script>
 </head>
 
 <body>
@@ -660,10 +678,14 @@
                                 <div class="Thank-you">
                                 <h4> Thank You</h4>
                                   </div>
--->
-
+                                -->
+                                <div class="g-recaptcha"
+                                data-sitekey="6LcXdHYUAAAAAHx2Dv9LHpV2qqmuvTipZn9ctbGM"
+                                data-callback="dataCallback"
+                                data-expired-callback="dataExpiredCallback"></div>
+    
                                 <!-- button  -->
-                                <button id="eventticket-contact-butn" type="submit" class="highlight-button-white-border btn btn-medium">Submit</button>
+                                <button id="eventticket-contact-butn" type="submit" class="highlight-button-white-border btn btn-medium" disabled>Submit</button>
                                 <!-- end button  -->
                             </form>
                         </div>

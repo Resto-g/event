@@ -2,7 +2,7 @@
     sticky nav
  ====================================== */
 
-$(window).scroll(function () {
+ $(window).scroll(function () {
     if ($(document).scrollTop() > 50) {
         $('nav').addClass('shrink');
     } else {
@@ -1206,8 +1206,8 @@ function validateMyForm(e){
     var email = document.getElementById('email').value;
     var organization = document.getElementById('OrganizaitonType').value;
     var participant = document.getElementById('ParticipantType').value;
-   
- 
+    
+
     
     var validator = validateEmail(email);
     
@@ -1321,16 +1321,3 @@ function errData(err){
                             auth
 ==============================================================*/
  
-
-
-
-
-
-
-
-
-
-
-
-
-
